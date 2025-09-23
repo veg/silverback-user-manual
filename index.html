@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Silverback ARM HPC Cluster - User Manual</title>
+    <title>Silverback ARM HPC Cluster Documentation</title>
     <link rel="stylesheet" href="styles.css">
     <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/components/prism-core.min.js"></script>
@@ -11,41 +11,33 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/prismjs@1.29.0/themes/prism-tomorrow.min.css">
 </head>
 <body>
-    <div class="container">
-        <aside class="sidebar" id="sidebar">
-            <div class="sidebar-header">
-                <h2>🦍 Silverback ARM</h2>
-                <button class="sidebar-toggle" id="sidebarToggle">☰</button>
+    <nav class="sidebar" id="sidebar">
+        <div class="sidebar-header">
+            <div class="logo">SILVERBACK</div>
+            <div class="subtitle">ARM HPC CLUSTER</div>
+        </div>
+        <div class="nav-menu" id="navMenu">
+            <!-- Navigation will be generated dynamically -->
+        </div>
+    </nav>
+    
+    <main class="main-content">
+        <header class="header">
+            <button class="mobile-menu-btn" id="mobileMenuBtn">
+                <span></span>
+                <span></span>
+                <span></span>
+            </button>
+            <div class="header-content">
+                <h1>Cluster Documentation</h1>
+                <div class="header-meta">High Performance Computing on ARM Architecture</div>
             </div>
-            <nav class="nav-menu" id="navMenu">
-                <!-- Navigation will be generated dynamically -->
-            </nav>
-        </aside>
+        </header>
         
-        <main class="main-content">
-            <header class="header">
-                <button class="mobile-menu-btn" id="mobileMenuBtn">☰</button>
-                <h1>HPC Cluster User Manual</h1>
-                <div class="search-container">
-                    <input type="search" id="searchInput" placeholder="Search documentation..." />
-                    <button id="searchBtn">🔍</button>
-                </div>
-            </header>
-            
-            <div class="content-wrapper">
-                <article class="content" id="content">
-                    <!-- Content will be loaded here -->
-                </article>
-                
-                <aside class="toc-sidebar">
-                    <div class="toc-header">Table of Contents</div>
-                    <nav class="toc" id="tableOfContents">
-                        <!-- TOC will be generated dynamically -->
-                    </nav>
-                </aside>
-            </div>
-        </main>
-    </div>
+        <div class="content" id="content">
+            <!-- All sections will be loaded here as a single scrolling page -->
+        </div>
+    </main>
     
     <script src="app.js"></script>
 </body>
