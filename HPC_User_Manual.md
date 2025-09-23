@@ -225,7 +225,7 @@ apptainer build --fakeroot myapp.sif myapp.def
 
 #### Custom Definition File Example
 Create a definition file (`r-geospatial.def`) for R with spatial packages:
-```
+```dockerfile
 Bootstrap: docker
 From: r-base:4.3.0
 
