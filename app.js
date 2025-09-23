@@ -186,8 +186,8 @@ class HPCManualApp {
     scrollToSection(sectionId) {
         const section = document.getElementById(sectionId);
         if (section) {
-            const headerHeight = 80; // CSS var --header-height
-            const targetPosition = section.offsetTop - headerHeight - 20;
+            const headerHeight = 60; // CSS var --header-height
+            const targetPosition = section.offsetTop - headerHeight - 10;
             
             window.scrollTo({
                 top: targetPosition,
@@ -204,7 +204,7 @@ class HPCManualApp {
                 }
             });
         }, {
-            rootMargin: '-80px 0px -80% 0px', // Account for header height
+            rootMargin: '-60px 0px -80% 0px', // Account for header height
             threshold: 0.1
         });
 
@@ -227,7 +227,7 @@ class HPCManualApp {
     }
 
     updateActiveSection() {
-        const scrollPosition = window.scrollY + 100; // Offset for header
+        const scrollPosition = window.scrollY + 80; // Offset for header
         
         for (let i = this.sections.length - 1; i >= 0; i--) {
             const section = document.getElementById(this.sections[i].id);
