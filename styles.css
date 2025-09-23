@@ -166,17 +166,14 @@ body {
 
 .section {
     padding: 1.5rem 0;
-    border-bottom: 1px solid var(--border-color);
 }
 
-.section:last-child {
-    border-bottom: none;
-}
 
 .section-container {
     max-width: 900px;
     margin: 0 auto;
     padding: 0 1.5rem;
+    text-align: left;
 }
 
 .section h1, .section h2 {
@@ -343,7 +340,7 @@ body {
 
 /* Loading state */
 .loading {
-    text-align: center;
+    text-align: left;
     padding: 2rem;
     color: var(--text-secondary);
 }
