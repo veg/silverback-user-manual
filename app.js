@@ -108,8 +108,8 @@ class HPCManualApp {
 
     createId(text) {
         return text.toLowerCase()
-            .replace(/[^a-z0-9\\s-]/g, '')
-            .replace(/\\s+/g, '-')
+            .replace(/[^a-z0-9\s-]/g, '')
+            .replace(/\s+/g, '-')
             .replace(/^-+|-+$/g, '');
     }
 
@@ -117,15 +117,40 @@ class HPCManualApp {
         const contentElement = document.getElementById('content');
         let html = '';
 
+        // Configure marked options
+        marked.setOptions({
+            gfm: true,
+            breaks: true,
+            sanitize: false,
+            highlight: function(code, lang) {
+                if (window.Prism && Prism.languages[lang]) {
+                    return Prism.highlight(code, Prism.languages[lang], lang);
+                }
+                return code;
+            }
+        });
+
         this.sections.forEach(section => {
-            const renderedContent = marked.parse(section.content);
-            html += `
-                <section class="section" id="${section.id}">
-                    <div class="section-container">
-                        ${renderedContent}
-                    </div>
-                </section>
-            `;
+            try {
+                const renderedContent = marked.parse(section.content);
+                html += `
+                    <section class="section" id="${section.id}">
+                        <div class="section-container">
+                            ${renderedContent}
+                        </div>
+                    </section>
+                `;
+            } catch (error) {
+                console.error('Error parsing section:', section.title, error);
+                html += `
+                    <section class="section" id="${section.id}">
+                        <div class="section-container">
+                            <h2>${section.title}</h2>
+                            <pre>${section.content}</pre>
+                        </div>
+                    </section>
+                `;
+            }
         });
 
         contentElement.innerHTML = html;
