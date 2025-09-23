@@ -33,8 +33,22 @@ class HPCManualApp {
         const lines = this.markdownContent.split('\n');
         let currentSection = null;
         let currentContent = [];
+        let inCodeBlock = false;
         
         lines.forEach(line => {
+            // Track if we're inside a code block
+            if (line.startsWith('```')) {
+                inCodeBlock = !inCodeBlock;
+                currentContent.push(line);
+                return;
+            }
+            
+            // Don't process headers if we're inside a code block
+            if (inCodeBlock) {
+                currentContent.push(line);
+                return;
+            }
+            
             if (line.startsWith('# ')) {
                 // Save previous section
                 if (currentSection) {
