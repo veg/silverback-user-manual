@@ -11,6 +11,7 @@ Welcome to the Silverback ARM HPC cluster running Rocky Linux 9.5. This manual p
 - **Total**: 2,048 CPU cores cluster-wide
 - **Scheduler**: SLURM
 - **OS**: Rocky Linux 9.5 (Blue Onyx)
+- **Cluster Management**: Warewulf 4.6.1 for node provisioning and management
 
 ## Getting Started
 
