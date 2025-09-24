@@ -19,7 +19,7 @@ Welcome to the Silverback ARM HPC cluster running Rocky Linux 9.5. This manual p
 To connect to the Silverback cluster, use SSH from your terminal:
 
 ```bash
-ssh username@silverback
+ssh username@silverback.temple.edu
 ```
 
 Replace `username` with your assigned username. You'll be prompted for your password.
@@ -57,18 +57,18 @@ du -sh ~/
 ### SCP (Secure Copy)
 Transfer files to Silverback:
 ```bash
-scp localfile.txt username@silverback:~/
+scp localfile.txt username@silverback.temple.edu:~/
 ```
 
 Transfer files from Silverback:
 ```bash
-scp username@silverback:~/remotefile.txt ./
+scp username@silverback.temple.edu:~/remotefile.txt ./
 ```
 
 ### RSYNC
 For larger transfers or syncing directories:
 ```bash
-rsync -avz local_directory/ username@silverback:~/remote_directory/
+rsync -avz local_directory/ username@silverback.temple.edu:~/remote_directory/
 ```
 
 ## Running Jobs
@@ -370,7 +370,7 @@ apptainer exec \
 
 | Command | Purpose |
 |---------|---------|
-| `ssh username@silverback` | Connect to cluster |
+| `ssh username@silverback.temple.edu` | Connect to cluster |
 | `module avail` | List available software |
 | `module load <software>` | Load software module |
 | `sbatch script.sh` | Submit batch job |
