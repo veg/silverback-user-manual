@@ -1,0 +1,4 @@
+[2025-09-29 02:00:01] Starting weekly documentation update
+[2025-09-29 02:00:01] Running Claude CLI to update documentation
+/home/sweaver/warewulf-admin/silverback-user-manual/update_documentation.sh: line 20: claude: command not found
+[2025-09-29 02:00:01] Changes detected, committing and pushing
