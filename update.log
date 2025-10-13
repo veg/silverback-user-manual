@@ -15,3 +15,13 @@ To github.com:veg/silverback-user-manual.git
 [2025-10-06 02:00:02] Running Claude CLI to update documentation
 /home/sweaver/warewulf-admin/silverback-user-manual/update_documentation.sh: line 20: claude: command not found
 [2025-10-06 02:00:02] Changes detected, committing and pushing
+[master 22c6a74] Weekly automated documentation update - 2025-10-06
+ 1 file changed, 13 insertions(+)
+To github.com:veg/silverback-user-manual.git
+   e4a714c..22c6a74  master -> master
+[2025-10-06 02:00:02] Documentation updated successfully
+[2025-10-06 02:00:02] Weekly update complete
+[2025-10-13 02:00:01] Starting weekly documentation update
+[2025-10-13 02:00:01] Running Claude CLI to update documentation
+/home/sweaver/warewulf-admin/silverback-user-manual/update_documentation.sh: line 20: claude: command not found
+[2025-10-13 02:00:01] Changes detected, committing and pushing
