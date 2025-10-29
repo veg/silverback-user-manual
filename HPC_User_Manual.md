@@ -56,7 +56,7 @@ High-speed temporary storage on each compute node.
 #### Shared Data Storage (`/data`)
 Fast shared storage for active datasets (Silverback only).
 - **Size**: 28TB
-- **Performance**: 1.1 GB/s write speed
+- **Performance**: 1.5 GB/s write speed
 - **Backup**: Regularly backed up
 - **Availability**: Silverback cluster only
 - **Best for**: Active datasets requiring maximum speed
@@ -85,7 +85,7 @@ Long-term archival storage for completed projects.
 |----------|------|-------|-----------|------------------------|----------|
 | `/home` | 14TB | 1.5 GB/s | Yes | No | Scripts, source code |
 | `/scratch` | 894GB/node | 2.8 GB/s | No | No (node-local) | Temporary job files |
-| `/data` | 28TB | 1.1 GB/s | Yes | No (Silverback only) | Active datasets |
+| `/data` | 28TB | 1.5 GB/s | Yes | No (Silverback only) | Active datasets |
 | `/storage` | 146TB | 1.0 GB/s | Selective | Yes (Magilla + Silverback) | Large shared datasets |
 | `/archive` | 54TB | 1.0 GB/s | Selective | Yes (Magilla + Silverback) | Long-term archival |
 
@@ -94,7 +94,7 @@ Long-term archival storage for completed projects.
 For optimal I/O performance on your jobs:
 
 1. **Temporary files**: Use node-local `/scratch` (2.8 GB/s) for intermediate files during jobs
-2. **Active processing**: Use `/data` (1.1 GB/s) for datasets actively being processed on Silverback
+2. **Active processing**: Use `/data` (1.5 GB/s) for datasets actively being processed on Silverback
 3. **Large datasets**: Use `/storage` (1.0 GB/s) for datasets too large for `/data` or when sharing with Magilla
 4. **Cross-cluster work**: Use `/storage` or `/archive` for projects spanning both Magilla and Silverback
 5. **Completed projects**: Move finished work to `/archive` to free up space in `/data` and `/storage`
