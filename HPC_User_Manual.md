@@ -34,54 +34,69 @@ On your first login:
 
 ## Storage
 
-### Home Directory
-- Location: `/home/username`
-- Purpose: Scripts, source code, small files
-- Backed up regularly
+The cluster provides multiple storage options optimized for different use cases. Understanding where to place your data ensures optimal performance and proper backup coverage.
 
-### Scratch Space
-- Location: `/scratch` on each compute node
-- Size: 894GB NVMe storage per node
-- Purpose: Fast local storage for temporary files, job I/O
-- NOT backed up - delete files when done
-- NOT shared between nodes - each node has its own /scratch
+### Storage Locations
 
-### Shared Data Storage
-- **`/data`** - Local shared storage (28TB)
-  - Mounted from head node via NFS
-  - Fast access for shared datasets
-  - Backed up regularly
-  - Available on all nodes
-  - Write performance: ~1.1 GB/s
+#### Home Directory (`/home/username`)
+Your personal workspace for scripts, source code, and configuration files.
+- **Backup**: Regularly backed up
+- **Performance**: 514 MB/s write speed
+- **Best for**: Source code, scripts, small files, and personal configurations
 
-- **`/storage/xl-data`** - Extended storage (146TB)
-  - NFS mount from bananahoard-xl storage server over 10GbE
-  - Large-scale data storage and processing
-  - Accessible from all nodes
-  - Use for large datasets that don't fit in /data
-  - Write performance: ~1.0 GB/s
+#### Scratch Space (`/scratch`)
+High-speed temporary storage on each compute node.
+- **Size**: 894GB NVMe per node
+- **Performance**: 1.4 GB/s write speed (fastest available)
+- **Backup**: NOT backed up
+- **Shared**: Node-local only (each node has its own `/scratch`)
+- **Best for**: Temporary job I/O, intermediate files during computation
 
-- **`/archive/sb-data`** - Archive storage (54TB)
-  - NFS mount from bananahoard-xl storage server over 10GbE
-  - Long-term data archival
-  - Accessible from all nodes
-  - Use for completed projects and long-term storage
-  - Write performance: ~1.0 GB/s
+#### Shared Data Storage (`/data`)
+Fast shared storage for active datasets (Silverback only).
+- **Size**: 28TB
+- **Performance**: 1.1 GB/s write speed
+- **Backup**: Regularly backed up
+- **Availability**: Silverback cluster only
+- **Best for**: Active datasets requiring maximum speed
 
-**Total cluster storage: ~243TB** (42TB local + 200TB NFS)
+#### Extended Storage (`/storage`)
+Large-scale storage for datasets that exceed `/data` capacity.
+- **Size**: 146TB
+- **Performance**: 1.0 GB/s write speed over 10GbE
+- **Backup**: Regularly backed up
+- **Availability**: Shared across both Magilla and Silverback clusters
+- **Best for**: Large datasets, shared projects across clusters
 
-### Storage Performance Summary
-All storage volumes provide excellent I/O performance suitable for data-intensive workflows:
-- Local `/data` volume: 1.1 GB/s write speed (local SSD/HDD array)
-- NFS mounts (`/storage/xl-data`, `/archive/sb-data`): 1.0 GB/s over 10 Gigabit Ethernet
-- `/home` directories: 514 MB/s (sufficient for scripts and small files)
-- `/scratch` on compute nodes: 1.4 GB/s (NVMe - fastest, use for temporary job I/O)
+#### Archive Storage (`/archive`)
+Long-term archival storage for completed projects.
+- **Size**: 54TB
+- **Performance**: 1.0 GB/s write speed over 10GbE
+- **Backup**: Regularly backed up
+- **Availability**: Shared across both Magilla and Silverback clusters
+- **Best for**: Completed projects, long-term data retention
 
-For best performance on large datasets:
-1. Use `/data` for actively processed datasets requiring maximum speed
-2. Use `/storage/xl-data` for large datasets - performance nearly matches local storage
-3. Use `/archive/sb-data` for completed projects and archival data
-4. Use local `/scratch` on compute nodes (894GB NVMe per node) for temporary job I/O
+**Total storage capacity: ~243TB**
+
+### Quick Reference Guide
+
+| Location | Size | Speed | Backed Up | Shared Across Clusters | Best Use |
+|----------|------|-------|-----------|------------------------|----------|
+| `/home` | User quota | 514 MB/s | Yes | No | Scripts, source code |
+| `/scratch` | 894GB/node | 1.4 GB/s | No | No (node-local) | Temporary job files |
+| `/data` | 28TB | 1.1 GB/s | Yes | No (Silverback only) | Active datasets |
+| `/storage` | 146TB | 1.0 GB/s | Yes | Yes (Magilla + Silverback) | Large shared datasets |
+| `/archive` | 54TB | 1.0 GB/s | Yes | Yes (Magilla + Silverback) | Long-term archival |
+
+### Performance Tips
+
+For optimal I/O performance on your jobs:
+
+1. **Temporary files**: Use node-local `/scratch` (1.4 GB/s) for intermediate files during jobs
+2. **Active processing**: Use `/data` (1.1 GB/s) for datasets actively being processed on Silverback
+3. **Large datasets**: Use `/storage` (1.0 GB/s) for datasets too large for `/data` or when sharing with Magilla
+4. **Cross-cluster work**: Use `/storage` or `/archive` for projects spanning both Magilla and Silverback
+5. **Completed projects**: Move finished work to `/archive` to free up space in `/data` and `/storage`
 
 
 ## File Transfer
