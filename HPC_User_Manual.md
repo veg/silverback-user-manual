@@ -65,7 +65,7 @@ Fast shared storage for active datasets (Silverback only).
 Large-scale storage for datasets that exceed `/data` capacity.
 - **Size**: 146TB
 - **Performance**: 1.0 GB/s write speed over 10GbE
-- **Backup**: Regularly backed up
+- **Backup**: Selectively backed up
 - **Availability**: Shared across both Magilla and Silverback clusters
 - **Best for**: Large datasets, shared projects across clusters
 
@@ -86,7 +86,7 @@ Long-term archival storage for completed projects.
 | `/home` | 14TB | 514 MB/s | Yes | No | Scripts, source code |
 | `/scratch` | 894GB/node | 1.4 GB/s | No | No (node-local) | Temporary job files |
 | `/data` | 28TB | 1.1 GB/s | Yes | No (Silverback only) | Active datasets |
-| `/storage` | 146TB | 1.0 GB/s | Yes | Yes (Magilla + Silverback) | Large shared datasets |
+| `/storage` | 146TB | 1.0 GB/s | Selective | Yes (Magilla + Silverback) | Large shared datasets |
 | `/archive` | 54TB | 1.0 GB/s | Yes | Yes (Magilla + Silverback) | Long-term archival |
 
 ### Performance Tips
