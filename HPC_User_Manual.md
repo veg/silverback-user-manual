@@ -47,35 +47,43 @@ On your first login:
 - NOT shared between nodes - each node has its own /scratch
 
 ### Shared Data Storage
+### Shared Data Storage
 - **`/data`** - Local shared storage (28TB)
   - Mounted from head node via NFS
   - Fast access for shared datasets
   - Backed up regularly
   - Available on all nodes
+  - Write performance: ~1.1 GB/s
 
 - **`/storage/xl-data`** - Extended storage (146TB)
-  - NFS mount from bananahoard-xl storage server
+  - NFS mount from bananahoard-xl storage server over 10GbE
   - Large-scale data storage and processing
   - Accessible from all nodes
   - Use for large datasets that don't fit in /data
+  - Write performance: ~1.0 GB/s
 
 - **`/archive/sb-data`** - Archive storage (54TB)
-  - NFS mount from bananahoard-xl storage server
+  - NFS mount from bananahoard-xl storage server over 10GbE
   - Long-term data archival
   - Accessible from all nodes
   - Use for completed projects and long-term storage
+  - Write performance: ~1.0 GB/s
 
-### Storage Limits
-Check your disk usage:
-```bash
-df -h ~
-du -sh ~/
-```
+**Total cluster storage: ~243TB** (42TB local + 200TB NFS)
 
-Check shared storage:
-```bash
-df -h /data /storage/xl-data /archive/sb-data
-```
+### Storage Performance Summary
+All storage volumes provide excellent I/O performance suitable for data-intensive workflows:
+- Local `/data` volume: 1.1 GB/s write speed (local SSD/HDD array)
+- NFS mounts (`/storage/xl-data`, `/archive/sb-data`): 1.0 GB/s over 10 Gigabit Ethernet
+- `/home` directories: 416 MB/s (sufficient for scripts and small files)
+
+For best performance on large datasets:
+1. Use `/data` for actively processed datasets requiring maximum speed
+2. Use `/storage/xl-data` for large datasets - performance nearly matches local storage
+3. Use `/archive/sb-data` for completed projects and archival data
+4. Use local `/scratch` on compute nodes (894GB NVMe per node) for temporary job I/O
+
+
 ## File Transfer
 
 ### SCP (Secure Copy)
