@@ -42,13 +42,13 @@ The cluster provides multiple storage options optimized for different use cases.
 Your personal workspace for scripts, source code, and configuration files.
 - **Size**: 14TB total capacity
 - **Backup**: Regularly backed up
-- **Performance**: 514 MB/s write speed
+- **Performance**: 1.5 GB/s write speed
 - **Best for**: Source code, scripts, small files, and personal configurations
 
 #### Scratch Space (`/scratch`)
 High-speed temporary storage on each compute node.
 - **Size**: 894GB NVMe per node
-- **Performance**: 1.4 GB/s write speed (fastest available)
+- **Performance**: 2.8 GB/s write speed (NVMe PCIe 4.0 - fastest available)
 - **Backup**: NOT backed up
 - **Shared**: Node-local only (each node has its own `/scratch`)
 - **Best for**: Temporary job I/O, intermediate files during computation
@@ -83,8 +83,8 @@ Long-term archival storage for completed projects.
 
 | Location | Size | Speed | Backed Up | Shared Across Clusters | Best Use |
 |----------|------|-------|-----------|------------------------|----------|
-| `/home` | 14TB | 514 MB/s | Yes | No | Scripts, source code |
-| `/scratch` | 894GB/node | 1.4 GB/s | No | No (node-local) | Temporary job files |
+| `/home` | 14TB | 1.5 GB/s | Yes | No | Scripts, source code |
+| `/scratch` | 894GB/node | 2.8 GB/s | No | No (node-local) | Temporary job files |
 | `/data` | 28TB | 1.1 GB/s | Yes | No (Silverback only) | Active datasets |
 | `/storage` | 146TB | 1.0 GB/s | Selective | Yes (Magilla + Silverback) | Large shared datasets |
 | `/archive` | 54TB | 1.0 GB/s | Selective | Yes (Magilla + Silverback) | Long-term archival |
@@ -93,7 +93,7 @@ Long-term archival storage for completed projects.
 
 For optimal I/O performance on your jobs:
 
-1. **Temporary files**: Use node-local `/scratch` (1.4 GB/s) for intermediate files during jobs
+1. **Temporary files**: Use node-local `/scratch` (2.8 GB/s) for intermediate files during jobs
 2. **Active processing**: Use `/data` (1.1 GB/s) for datasets actively being processed on Silverback
 3. **Large datasets**: Use `/storage` (1.0 GB/s) for datasets too large for `/data` or when sharing with Magilla
 4. **Cross-cluster work**: Use `/storage` or `/archive` for projects spanning both Magilla and Silverback
