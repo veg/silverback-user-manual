@@ -46,6 +46,25 @@ On your first login:
 - NOT backed up - delete files when done
 - NOT shared between nodes - each node has its own /scratch
 
+### Shared Data Storage
+- **`/data`** - Local shared storage (28TB)
+  - Mounted from head node via NFS
+  - Fast access for shared datasets
+  - Backed up regularly
+  - Available on all nodes
+
+- **`/storage/xl-data`** - Extended storage (146TB)
+  - NFS mount from bananahoard-xl storage server
+  - Large-scale data storage and processing
+  - Accessible from all nodes
+  - Use for large datasets that don't fit in /data
+
+- **`/archive/sb-data`** - Archive storage (54TB)
+  - NFS mount from bananahoard-xl storage server
+  - Long-term data archival
+  - Accessible from all nodes
+  - Use for completed projects and long-term storage
+
 ### Storage Limits
 Check your disk usage:
 ```bash
@@ -53,6 +72,10 @@ df -h ~
 du -sh ~/
 ```
 
+Check shared storage:
+```bash
+df -h /data /storage/xl-data /archive/sb-data
+```
 ## File Transfer
 
 ### SCP (Secure Copy)
