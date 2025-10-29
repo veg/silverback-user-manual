@@ -2,7 +2,7 @@
 
 ## Overview
 
-Welcome to the Silverback ARM HPC cluster running Rocky Linux 9.5. This manual provides essential information for using our ARM-based computing resources.
+Welcome to the Silverback ARM HPC cluster running Rocky Linux 9.6. This manual provides essential information for using our ARM-based computing resources.
 
 ### System Specifications
 - **Architecture**: ARM64 (aarch64) with Neoverse-N1 processors
@@ -10,7 +10,7 @@ Welcome to the Silverback ARM HPC cluster running Rocky Linux 9.5. This manual p
 - **Per Node**: 128 CPU cores, 256GB RAM
 - **Total**: 2,048 CPU cores cluster-wide
 - **Scheduler**: SLURM
-- **OS**: Rocky Linux 9.5 (Blue Onyx)
+- **OS**: Rocky Linux 9.6 (Blue Onyx)
 - **Cluster Management**: Warewulf 4.6.1 for node provisioning and management
 
 ## Getting Started
