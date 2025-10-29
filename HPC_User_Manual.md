@@ -47,7 +47,6 @@ On your first login:
 - NOT shared between nodes - each node has its own /scratch
 
 ### Shared Data Storage
-### Shared Data Storage
 - **`/data`** - Local shared storage (28TB)
   - Mounted from head node via NFS
   - Fast access for shared datasets
