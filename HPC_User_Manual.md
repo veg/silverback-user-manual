@@ -75,7 +75,8 @@ On your first login:
 All storage volumes provide excellent I/O performance suitable for data-intensive workflows:
 - Local `/data` volume: 1.1 GB/s write speed (local SSD/HDD array)
 - NFS mounts (`/storage/xl-data`, `/archive/sb-data`): 1.0 GB/s over 10 Gigabit Ethernet
-- `/home` directories: 416 MB/s (sufficient for scripts and small files)
+- `/home` directories: 514 MB/s (sufficient for scripts and small files)
+- `/scratch` on compute nodes: 1.4 GB/s (NVMe - fastest, use for temporary job I/O)
 
 For best performance on large datasets:
 1. Use `/data` for actively processed datasets requiring maximum speed
