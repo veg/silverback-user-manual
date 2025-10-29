@@ -412,7 +412,7 @@ apptainer exec \
 - View completed job info: `sacct -j <jobid>`
 - Node status: `sinfo`
 - View node details: `scontrol show node <nodename>`
-- Contact support: hpc-support@temple.edu
+- Contact support: sweaver@temple.edu
 
 ## Quick Reference
 
@@ -437,4 +437,4 @@ Current cluster configuration:
 - **Node States**: Check with `sinfo` for current availability
 
 ---
-*For additional help, contact the HPC support team at hpc-support@temple.edu*
+*For additional help, contact the HPC support team at sweaver@temple.edu*
