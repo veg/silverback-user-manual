@@ -40,6 +40,7 @@ The cluster provides multiple storage options optimized for different use cases.
 
 #### Home Directory (`/home/username`)
 Your personal workspace for scripts, source code, and configuration files.
+- **Size**: 14TB total capacity
 - **Backup**: Regularly backed up
 - **Performance**: 514 MB/s write speed
 - **Best for**: Source code, scripts, small files, and personal configurations
@@ -82,7 +83,7 @@ Long-term archival storage for completed projects.
 
 | Location | Size | Speed | Backed Up | Shared Across Clusters | Best Use |
 |----------|------|-------|-----------|------------------------|----------|
-| `/home` | User quota | 514 MB/s | Yes | No | Scripts, source code |
+| `/home` | 14TB | 514 MB/s | Yes | No | Scripts, source code |
 | `/scratch` | 894GB/node | 1.4 GB/s | No | No (node-local) | Temporary job files |
 | `/data` | 28TB | 1.1 GB/s | Yes | No (Silverback only) | Active datasets |
 | `/storage` | 146TB | 1.0 GB/s | Yes | Yes (Magilla + Silverback) | Large shared datasets |
