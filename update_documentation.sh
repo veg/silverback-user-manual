@@ -3,7 +3,7 @@
 
 # Set up environment
 export PATH="/usr/local/bin:/usr/bin:/bin:$PATH"
-LOG_FILE="/home/sweaver/warewulf-admin/silverback-user-manual/update.log"
+LOG_FILE="/home/sweaver/projects/warewulf-admin/silverback-user-manual/update.log"
 
 # Log function
 log() {
@@ -11,7 +11,7 @@ log() {
 }
 
 # Change to documentation directory
-cd /home/sweaver/warewulf-admin/silverback-user-manual || exit 1
+cd /home/sweaver/projects/warewulf-admin/silverback-user-manual || exit 1
 
 log "Starting weekly documentation update"
 

@@ -232,6 +232,26 @@ iqtree -s alignment.fasta -m MFP -T AUTO
 ```
 
 ### Using Local Scratch Space
+
+Every job is automatically given a private, node-local NVMe scratch directory, exposed as
+`$SLURM_TMPDIR` (also set as `$TMPDIR`). It is created for you at job start and removed when
+the job ends, so you do not need to make or clean it up yourself:
+
+```
+$SLURM_TMPDIR   (= $TMPDIR)   ->   /scratch/job_<jobid>
+```
+
+Write intermediate files, scratch data, and large or frequently written outputs (including
+model/training checkpoints) to `$SLURM_TMPDIR`, then copy the results you want to keep back to
+`/home` or `/data` as the last step of your job. Tools that honor `$TMPDIR` (for example
+`samtools sort`, Python `tempfile`, R `tempdir()`) use it automatically.
+
+> **Important:** Do not write heavy or frequent output directly to `/home`, `/data`, or
+> `/storage` during a running job. Those are network filesystems; under load a job writing
+> there can get stuck in uninterruptible I/O, and a job whose processes cannot be killed in
+> time will cause SLURM to **drain the compute node** it ran on. Writing to `$SLURM_TMPDIR`
+> (local NVMe) avoids this.
+
 ```bash
 #!/bin/bash
 #SBATCH --job-name=scratch_job
@@ -239,16 +259,26 @@ iqtree -s alignment.fasta -m MFP -T AUTO
 #SBATCH --nodes=1
 #SBATCH --ntasks=1
 
-# Copy input data to fast local scratch
-cp /home/$USER/input_data.tar.gz /scratch/
-cd /scratch
+# Work in the fast, per-job local scratch dir (auto-created, auto-cleaned)
+cd "$SLURM_TMPDIR"
 
-# Extract and process
+# Stage input, process
+cp /home/$USER/input_data.tar.gz .
 tar -xzf input_data.tar.gz
 ./process_data.sh
 
-# Copy results back before job ends
-cp -r results/ /home/$USER/
+# Copy results back BEFORE the job ends (scratch is wiped at job exit)
+rsync -a results/ /home/$USER/results/$SLURM_JOB_ID/
+```
+
+For machine-learning or other tools that take an explicit output path (and therefore ignore
+`$TMPDIR`), point that path at scratch and copy back:
+
+```bash
+OUT="$SLURM_TMPDIR/run"
+mkdir -p "$OUT"
+python train.py --output_dir "$OUT" ...
+rsync -a "$OUT/" /home/$USER/myproject/results/$SLURM_JOB_ID/
 ```
 
 ## Containers (Apptainer/Singularity)
